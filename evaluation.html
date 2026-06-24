@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Évaluation finale — Droit et environnement fiscal du particulier · TMK Performances</title>
+<style>
+:root{
+  --bg:#f6f1ea;--card:#fffdfa;--ink:#2b2230;--muted:#857888;
+  --prune:#5e2750;--prune-700:#4a1d3f;--prune-100:#f1e4ed;
+  --or:#bd8f37;--or-100:#f7edd5;--line:#e7dccd;
+  --shadow:0 1px 2px rgba(43,34,48,.04),0 12px 30px rgba(43,34,48,.07);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:16px;
+  background:radial-gradient(1100px 500px at 100% -10%,#f3e9dd 0%,transparent 60%),var(--bg);padding:28px 16px 56px}
+.fiche{max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.fiche-header{position:relative;background:linear-gradient(155deg,var(--prune),var(--prune-700));color:#f7eef3;padding:34px 34px 30px}
+.fiche-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--or),#e2c074 50%,var(--or))}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#e7c8a8;font-weight:700;margin-bottom:14px}
+.fiche-title{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1.1;margin:0 0 8px}
+.fiche-subtitle{margin:0;color:#e3d0dd;font-size:15.5px}
+.fiche-body{padding:30px 34px 36px}
+
+/* identité */
+.gate label{display:block;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.gate .row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.gate .field{flex:1;min-width:200px}
+.gate input{width:100%;font-family:var(--sans);font-size:16px;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.gate input:focus{outline:3px solid var(--or);outline-offset:1px;border-color:var(--prune)}
+.intro-card{border-left:3px solid var(--or);background:var(--or-100);padding:14px 18px;border-radius:0 10px 10px 0;font-size:14px;color:#5b4a23;margin:0 0 22px}
+.intro-card b{color:#4a3a14}
+
+.btn{appearance:none;cursor:pointer;font-family:var(--sans);font-size:15px;font-weight:600;border:0;border-radius:11px;padding:13px 24px;background:var(--prune);color:#fff;transition:background .15s ease}
+.btn:hover{background:var(--prune-700)}
+.btn:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.gold{background:var(--or);color:#3c2c08}.btn.gold:hover{background:#a87c2c}
+
+/* consignes */
+.consignes{border:1px solid var(--line);border-radius:14px;background:#fffdf8;padding:18px 20px;margin:0 0 24px}
+.consignes h2{font-family:var(--serif);font-size:19px;margin:0 0 10px;color:var(--prune-700)}
+.consignes ul{margin:0;padding-left:20px;font-size:14px;color:#3a3140}
+.consignes li{margin-bottom:6px}
+.consignes b{color:var(--prune-700)}
+.bareme-mini{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.bareme-mini span{font-size:12px;background:var(--prune-100);color:var(--prune-700);border-radius:7px;padding:5px 10px;font-variant-numeric:tabular-nums}
+
+/* questions */
+.q{border:1px solid var(--line);border-radius:14px;background:#fff;margin:0 0 14px;padding:18px 20px}
+.q .head{display:flex;gap:10px;align-items:baseline;margin-bottom:4px}
+.q .num{font-family:var(--serif);font-weight:700;font-size:12.5px;color:#fff;background:var(--prune);border-radius:7px;padding:3px 9px;flex:0 0 auto}
+.q .pts{font-size:11.5px;color:var(--or);font-weight:700;margin-left:auto;flex:0 0 auto}
+.q .txt{font-size:15px;color:#2b2230;margin:0 0 12px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:11px;align-items:flex-start;cursor:pointer;border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;font-size:14.5px;transition:background .12s,border-color .12s}
+.opt:hover{border-color:var(--prune);background:var(--prune-100)}
+.opt input{margin:2px 0 0;accent-color:var(--prune);width:17px;height:17px;flex:0 0 auto}
+.opt.sel{border-color:var(--prune);background:var(--prune-100)}
+.cas-intro{border-left:3px solid var(--prune);background:var(--prune-100);padding:12px 16px;border-radius:0 10px 10px 0;font-size:14px;color:#42283b;margin:22px 0 14px}
+.cas-intro b{color:var(--prune-700)}
+.section-label{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:26px 0 14px}
+
+.actions{margin-top:24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.warn{font-size:13.5px;color:#b14a32;font-weight:600;min-height:1.2em}
+.locked-note{display:none;align-items:center;gap:9px;font-size:14px;font-weight:600;color:#1d6a43;background:#e6f3ec;border:1px solid #2f8a5b;border-radius:10px;padding:11px 16px}
+
+/* feuille de réponses (PDF) */
+#feuille{display:none}
+#feuille .fh{border-bottom:2px solid var(--prune);padding-bottom:10px;margin-bottom:14px}
+#feuille .fh .t{font-family:var(--serif);font-size:20px;color:var(--prune-700);font-weight:600}
+#feuille .fh .s{font-size:12.5px;color:var(--muted)}
+#feuille .id{font-size:14px;margin:0 0 14px}
+#feuille .id b{color:var(--prune-700)}
+#feuille table{width:100%;border-collapse:collapse;font-size:13.5px}
+#feuille th,#feuille td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+#feuille th{background:var(--prune-100);color:var(--prune-700);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+#feuille td.n{width:42px;font-weight:700;color:var(--prune)}
+#feuille .sign{margin-top:22px;font-size:12.5px;color:var(--muted)}
+
+.fiche-footer{border-top:1px solid var(--line);padding:16px 34px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fiche-footer a{color:var(--prune);font-weight:600;text-decoration:none}
+
+.hidden{display:none!important}
+
+@media(max-width:560px){
+  body{padding:14px 8px 36px}.fiche-header{padding:24px 20px 22px}.fiche-title{font-size:23px}
+  .fiche-body{padding:22px 18px 26px}.fiche-footer{padding:14px 20px}
+}
+@media print{
+  body{background:#fff;padding:0}
+  .fiche{border:0;box-shadow:none;max-width:none}
+  .fiche-header,.fiche-footer,#identite,#epreuve{display:none!important}
+  .fiche-body{padding:24px}
+  #feuille{display:block!important}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<article class="fiche">
+  <header class="fiche-header">
+    <div class="eyebrow">TMK Performances · Évaluation finale</div>
+    <h1 class="fiche-title">Droit et environnement fiscal du particulier</h1>
+    <p class="fiche-subtitle">Questionnaire d'évaluation — 12 questions, 24 points.</p>
+  </header>
+
+  <div class="fiche-body">
+
+    <!-- ÉTAPE 1 : IDENTITÉ -->
+    <section id="identite" class="gate">
+      <div class="intro-card"><b>Avant de commencer.</b> Renseignez votre identité. Une fois l'épreuve démarrée et vos réponses validées, vous générerez un PDF de votre copie : après cela, le questionnaire sera <b>verrouillé</b> et vos réponses ne pourront plus être modifiées.</div>
+      <div class="row">
+        <div class="field"><label for="nom">Nom</label><input id="nom" type="text" autocomplete="family-name" placeholder="Votre nom"></div>
+        <div class="field"><label for="prenom">Prénom</label><input id="prenom" type="text" autocomplete="given-name" placeholder="Votre prénom"></div>
+      </div>
+      <p class="warn" id="warnId"></p>
+      <button class="btn" id="startBtn">Commencer l'épreuve →</button>
+    </section>
+
+    <!-- ÉTAPE 2 : ÉPREUVE -->
+    <section id="epreuve" class="hidden">
+      <div class="consignes">
+        <h2>Consignes</h2>
+        <ul>
+          <li>L'épreuve comporte <b>12 questions</b> (10 questions de cours + 2 cas pratiques), notées <b>2 points</b> chacune, soit <b>24 points</b>.</li>
+          <li>Une seule réponse par question. Sélectionnez la proposition qui vous semble correcte.</li>
+          <li>Vous pouvez modifier vos réponses tant que vous n'avez pas généré votre PDF.</li>
+          <li>À la fin, cliquez sur <b>« Générer le PDF »</b> : votre copie (nom, prénom, date, réponses) sera mise en forme pour impression / enregistrement en PDF, puis le questionnaire sera <b>verrouillé</b>.</li>
+        </ul>
+        <div class="bareme-mini" aria-label="Barème de référence">
+          <span>0 % jusqu'à 11 600 €</span><span>11 % → 29 579 €</span><span>30 % → 84 577 €</span><span>41 % → 181 917 €</span><span>45 % au-delà</span>
+        </div>
+      </div>
+
+      <p class="section-label">Questions de cours</p>
+      <div id="qcm"></div>
+
+      <p class="section-label">Cas pratiques</p>
+      <div class="cas-intro">Deux couples mariés perçoivent <b>les mêmes salaires</b> : Monsieur <b>2 600 €</b> et Madame <b>2 350 €</b> nets par mois. Seule leur situation familiale et patrimoniale diffère.</div>
+      <div id="cas"></div>
+
+      <div class="actions">
+        <button class="btn gold" id="genBtn">📄 Générer le PDF</button>
+        <span class="warn" id="warnQ"></span>
+      </div>
+      <div class="locked-note" id="lockedNote"><span>✓</span> Copie générée. Le questionnaire est verrouillé — vos réponses ont été figées.</div>
+    </section>
+
+    <!-- FEUILLE DE RÉPONSES (PDF) -->
+    <section id="feuille">
+      <div class="fh"><div class="t">Évaluation — Droit et environnement fiscal du particulier</div><div class="s">TMK Performances · feuille de réponses</div></div>
+      <p class="id"><b>Nom :</b> <span id="fNom"></span> &nbsp;·&nbsp; <b>Prénom :</b> <span id="fPrenom"></span> &nbsp;·&nbsp; <b>Date :</b> <span id="fDate"></span></p>
+      <table><thead><tr><th class="n">N°</th><th>Question</th><th>Réponse choisie</th></tr></thead><tbody id="fBody"></tbody></table>
+      <p class="sign">Signature du stagiaire : ______________________________</p>
+    </section>
+
+  </div>
+
+  <footer class="fiche-footer">
+    <span>TMK Performances — évaluation finale du module.</span>
+    <a href="index.html">← Sommaire</a>
+  </footer>
+</article>
+
+<script>
+/* ---------- données des questions (énoncés + options, verbatim) ---------- */
+const QUESTIONS = [
+  {t:`Le système d'imposition français est dit :`, o:[
+    `Par répartition : chacun paye ses impôts en fonction de ses revenus`,
+    `Progressif : au plus le quotient familial augmente, au plus la pression fiscale augmente`,
+    `Par capitalisation : le taux d'imposition augmente en proportion du revenu`]},
+  {t:`Combien existe-t-il de tranches d'imposition ?`, o:[`4`,`5`,`6`]},
+  {t:`Monsieur A. perçoit un salaire annuel net de 28 000 €. Il est célibataire sans enfant. Quel est son TMI ?`, o:[`0 %`,`11 %`,`30 %`]},
+  {t:`Avant le prélèvement à la source, les contribuables qui payaient en 2014 des impôts sur leurs revenus de 2013 étaient imposés selon :`, o:[`4 TMI`,`5 TMI`,`6 TMI`]},
+  {t:`Madame B. est veuve. Elle a un enfant à charge qui est handicapé. Combien de parts fiscales compte son foyer ?`, o:[`2`,`2,5`,`3`]},
+  {t:`Monsieur C. vit en union libre. Les deux enfants qu'il a eus avec sa compagne actuelle sont rattachés fiscalement à sa déclaration. Son premier enfant, issu d'un précédent mariage, est en garde partagée. De combien de parts fiscales bénéficie-t-il ?`, o:[`2,5`,`2,75`,`3,75`]},
+  {t:`Madame D. est divorcée. Son revenu mensuel est de 3 100 €. Elle verse une pension alimentaire de 230 € à son ex-mari qui a la garde de leurs deux enfants. Quel est le montant de son impôt sur le revenu ?`, o:[`2 584 €`,`2 381 €`,`3 618 €`]},
+  {t:`Monsieur et Madame E. sont mariés sous le régime de la communauté de biens. Ils ont deux enfants de 6 et 4 ans. Monsieur perçoit 4 150 € nets/mois, Madame 2 100 € nets/mois. Quel est le montant de l'impôt du foyer ?`, o:[`3 304 €`,`3 630 €`,`4 521 €`,`5 554 €`]},
+  {t:`Madame F. perçoit un revenu mensuel net de 1 350 €. Bénéficie-t-elle d'une décote ?`, o:[`Oui, sa décote est de 163 €`,`Oui, sa décote est de 361 €`,`Oui, sa décote est de 710 €`,`Non, elle dépasse le plafond de revenus`]},
+  {t:`Monsieur et Madame G. viennent de se marier. Monsieur perçoit 1 950 € nets/mois, Madame 3 610 € nets/mois. Quel est l'impact de leur mariage sur leur situation fiscale ?`, o:[`Leur impôt sera le même que la somme des impôts qu'ils payaient séparément`,`Leur impôt augmentera`,`Leur impôt diminue`]},
+];
+const CAS = [
+  {t:`Cas A — Le couple n'a pas d'enfant (2 parts) et ne déclare aucune déduction. Quel est le montant de son impôt ?`, o:[`3 328 €`,`4 027 €`,`2 748 €`]},
+  {t:`Cas B — Le couple a deux enfants (3 parts) et verse 3 000 € par an sur un PER (déductible). Quel est le montant de son impôt ?`, o:[`1 018 €`,`1 498 €`,`1 722 €`]},
+];
+
+/* ---------- rendu ---------- */
+function renderQ(list, root, offset){
+  list.forEach((q,i)=>{
+    const num=offset+i+1, name='q'+num;
+    const opts=q.o.map((txt,j)=>`<label class="opt"><input type="radio" name="${name}" value="${txt.replace(/"/g,'&quot;')}"><span>${txt}</span></label>`).join('');
+    root.insertAdjacentHTML('beforeend',
+      `<div class="q" data-q="${num}"><div class="head"><span class="num">${num}</span><span class="pts">2 points</span></div>
+       <p class="txt">${q.t}</p><div class="opts">${opts}</div></div>`);
+  });
+}
+renderQ(QUESTIONS, document.getElementById('qcm'), 0);
+renderQ(CAS, document.getElementById('cas'), QUESTIONS.length);
+
+// surlignage de l'option sélectionnée
+document.addEventListener('change', e=>{
+  if(e.target.matches('input[type=radio]')){
+    const name=e.target.name;
+    document.querySelectorAll(`input[name="${name}"]`).forEach(r=>r.closest('.opt').classList.toggle('sel',r.checked));
+  }
+});
+
+/* ---------- étape identité ---------- */
+const NB = QUESTIONS.length + CAS.length;
+let NOM='', PRENOM='';
+document.getElementById('startBtn').addEventListener('click',()=>{
+  const nom=document.getElementById('nom').value.trim(), prenom=document.getElementById('prenom').value.trim();
+  if(!nom||!prenom){ document.getElementById('warnId').textContent='Merci de renseigner votre nom et votre prénom.'; return; }
+  NOM=nom; PRENOM=prenom;
+  document.getElementById('identite').classList.add('hidden');
+  document.getElementById('epreuve').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ---------- génération PDF + verrouillage ---------- */
+document.getElementById('genBtn').addEventListener('click',()=>{
+  // toutes répondues ?
+  const manquantes=[];
+  for(let n=1;n<=NB;n++){ if(!document.querySelector(`input[name="q${n}"]:checked`)) manquantes.push(n); }
+  const warn=document.getElementById('warnQ');
+  if(manquantes.length){ warn.textContent=`Questions sans réponse : ${manquantes.join(', ')}.`; 
+    const first=document.querySelector(`.q[data-q="${manquantes[0]}"]`); if(first)first.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  warn.textContent='';
+
+  // construire la feuille
+  document.getElementById('fNom').textContent=NOM;
+  document.getElementById('fPrenom').textContent=PRENOM;
+  document.getElementById('fDate').textContent=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+  const body=document.getElementById('fBody'); body.innerHTML='';
+  for(let n=1;n<=NB;n++){
+    const sel=document.querySelector(`input[name="q${n}"]:checked`);
+    const qTxt=(n<=QUESTIONS.length?QUESTIONS[n-1].t:CAS[n-QUESTIONS.length-1].t);
+    body.insertAdjacentHTML('beforeend',`<tr><td class="n">${n}</td><td>${qTxt}</td><td><b>${sel?sel.value:'—'}</b></td></tr>`);
+  }
+
+  // verrouiller
+  document.querySelectorAll('#epreuve input[type=radio]').forEach(r=>r.disabled=true);
+  document.querySelectorAll('#epreuve .opt').forEach(o=>o.style.cursor='default');
+  document.getElementById('genBtn').classList.add('hidden');
+  document.getElementById('lockedNote').style.display='flex';
+
+  // imprimer (enregistrer en PDF)
+  setTimeout(()=>window.print(),150);
+  document.getElementById('feuille').scrollIntoView({behavior:'smooth'});
+});
+</script>
+</body>
+</html>

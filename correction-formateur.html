@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Correction formateur — Évaluation finale · TMK Performances</title>
+<style>
+:root{
+  --bg:#f6f1ea;--card:#fffdfa;--ink:#2b2230;--muted:#857888;
+  --prune:#5e2750;--prune-700:#4a1d3f;--prune-100:#f1e4ed;
+  --or:#bd8f37;--or-100:#f7edd5;--line:#e7dccd;
+  --ok:#1d6a43;--ok-bg:#e6f3ec;--ok-bd:#2f8a5b;
+  --warn:#9a5b14;--warn-bg:#fbf1dd;--warn-bd:#d8a13e;
+  --shadow:0 1px 2px rgba(43,34,48,.04),0 12px 30px rgba(43,34,48,.07);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:16px;
+  background:radial-gradient(1100px 500px at 100% -10%,#f3e9dd 0%,transparent 60%),var(--bg);padding:28px 16px 56px}
+.fiche{max-width:900px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.fiche-header{position:relative;background:linear-gradient(155deg,var(--prune),var(--prune-700));color:#f7eef3;padding:34px 34px 30px}
+.fiche-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--or),#e2c074 50%,var(--or))}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#e7c8a8;font-weight:700;margin-bottom:14px}
+.fiche-title{font-family:var(--serif);font-weight:600;font-size:29px;line-height:1.1;margin:0 0 8px}
+.fiche-subtitle{margin:0;color:#e3d0dd;font-size:15px}
+.fiche-body{padding:30px 34px 36px}
+
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 20px}
+.btn{appearance:none;cursor:pointer;font-family:var(--sans);font-size:13.5px;font-weight:600;border:0;border-radius:9px;padding:9px 16px;background:var(--prune);color:#fff;transition:background .15s}
+.btn:hover{background:var(--prune-700)}
+
+.note{border-left:3px solid var(--or);background:var(--or-100);padding:13px 17px;border-radius:0 10px 10px 0;font-size:13.5px;color:#5b4a23;margin:0 0 20px}
+.note b{color:#4a3a14}
+.bareme-mini{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.bareme-mini span{font-size:12px;background:var(--prune-100);color:var(--prune-700);border-radius:7px;padding:5px 10px;font-variant-numeric:tabular-nums}
+
+.section-label{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:26px 0 14px}
+
+.qc{border:1px solid var(--line);border-radius:13px;background:#fff;margin:0 0 13px;padding:16px 18px;break-inside:avoid}
+.qc .head{display:flex;gap:10px;align-items:baseline;margin-bottom:8px}
+.qc .num{font-family:var(--serif);font-weight:700;font-size:12.5px;color:#fff;background:var(--prune);border-radius:7px;padding:3px 9px}
+.qc .txt{font-size:14px;color:#3a3140;margin:0}
+.qc .rep{display:inline-flex;align-items:center;gap:8px;background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-bd);border-radius:9px;padding:7px 13px;font-weight:700;font-size:14px;margin:4px 0 8px;font-variant-numeric:tabular-nums}
+.qc .rep .ic{width:17px;height:17px;border-radius:50%;background:var(--ok-bd);color:#fff;display:grid;place-items:center;font-size:11px}
+.qc .exp{font-size:13.5px;color:#3a3140;margin:0}
+.qc .exp b{color:var(--prune-700)}
+.qc .exp .calc{font-variant-numeric:tabular-nums;background:var(--prune-100);color:var(--prune-700);border-radius:5px;padding:0 5px;font-weight:600}
+.flag{margin-top:9px;border-left:3px solid var(--warn-bd);background:var(--warn-bg);padding:9px 13px;border-radius:0 8px 8px 0;font-size:13px;color:var(--warn)}
+.flag b{color:#7a4710}
+
+.casbox{border:1px solid var(--line);border-radius:13px;overflow:hidden;margin:0 0 13px;break-inside:avoid}
+.casbox .ch{background:var(--prune-100);padding:11px 16px;font-family:var(--serif);font-weight:600;color:var(--prune-700);font-size:16px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.casbox .ch .imp{font-size:15px;font-variant-numeric:tabular-nums}
+.casbox .cb{padding:14px 16px;font-size:13.5px;color:#3a3140}
+.casbox table{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 6px}
+.casbox td{padding:4px 8px;border-bottom:1px solid #f1ece2;font-variant-numeric:tabular-nums}
+.casbox td:first-child{color:var(--muted)}
+.casbox td:last-child{text-align:right;font-weight:600;color:var(--ink)}
+.ecart{background:linear-gradient(155deg,var(--prune),var(--prune-700));color:#fff;border-radius:11px;padding:14px 18px;margin:6px 0 0;font-size:13.5px}
+.ecart .big{font-family:var(--serif);font-size:24px;font-weight:600}
+
+.bareme-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:4px 0 0}
+.fiche-footer{border-top:1px solid var(--line);padding:16px 34px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fiche-footer a{color:var(--prune);font-weight:600;text-decoration:none}
+@media(max-width:560px){body{padding:14px 8px}.fiche-header{padding:24px 20px}.fiche-title{font-size:22px}.fiche-body{padding:22px 18px}.bareme-grid{grid-template-columns:1fr}}
+@media print{body{background:#fff;padding:0}.fiche{border:0;box-shadow:none}.tools{display:none}}
+</style>
+</head>
+<body>
+<article class="fiche">
+  <header class="fiche-header">
+    <div class="eyebrow">TMK Performances · Document formateur</div>
+    <h1 class="fiche-title">Correction — Évaluation finale</h1>
+    <p class="fiche-subtitle">Réponses, barème de notation et explications · 12 questions × 2 points = 24 points.</p>
+  </header>
+
+  <div class="fiche-body">
+    <div class="tools"><button class="btn" onclick="window.print()">📄 Imprimer / PDF</button></div>
+
+    <div class="note">
+      <b>Réponses recalculées sur le barème 2025</b> (revenus 2025 / imposition 2026). Pour les questions de calcul, le montant exact dépend du barème : <b>certaines options du QCM semblent calées sur un barème antérieur</b> (Q7, Q8, Q9). Ces écarts sont signalés en orange — à valider/ajuster avant diffusion. Conventions : salaires × 12, abattement 10 %, troncature à l'euro, décote appliquée, plafonnement du QF vérifié.
+      <div class="bareme-mini"><span>0 % → 11 600 €</span><span>11 % → 29 579 €</span><span>30 % → 84 577 €</span><span>41 % → 181 917 €</span><span>45 % au-delà</span><span>décote : 897 € (seul) / 1 483 € (couple), taux 45,25 %</span><span>plafond QF : 1 807 €/demi-part</span></div>
+    </div>
+
+    <p class="section-label">Questions de cours</p>
+    <div id="corr"></div>
+
+    <p class="section-label">Cas pratiques — deux couples, mêmes salaires (M 2 600 € + Mme 2 350 € nets/mois)</p>
+    <div id="cas"></div>
+  </div>
+
+  <footer class="fiche-footer">
+    <span>TMK Performances — corrigé réservé au formateur.</span>
+    <a href="index.html">← Sommaire</a>
+  </footer>
+</article>
+
+<script>
+const Q = [
+ {t:`Le système d'imposition français est dit :`, r:`Progressif`,
+  e:`L'impôt sur le revenu est <b>progressif</b> : le taux s'élève par tranches selon le quotient familial. « Répartition » et « capitalisation » désignent des modes de financement des retraites, pas l'imposition.`},
+ {t:`Combien existe-t-il de tranches d'imposition ?`, r:`5`,
+  e:`Cinq tranches : <span class="calc">0 %</span>, <span class="calc">11 %</span>, <span class="calc">30 %</span>, <span class="calc">41 %</span>, <span class="calc">45 %</span>.`},
+ {t:`Monsieur A. — salaire annuel net 28 000 €, célibataire sans enfant. TMI ?`, r:`11 %`,
+  e:`RNI = <span class="calc">28 000 − 10 % = 25 200 €</span> ; quotient familial = 25 200 € (1 part) → tranche 11 601–29 579 € → <b>TMI 11 %</b>.`},
+ {t:`Avant le prélèvement à la source, en 2014 (revenus 2013), combien de TMI ?`, r:`6 TMI`,
+  e:`En 2014, le barème comptait 6 tranches : <span class="calc">0 · 5,5 · 14 · 30 · 41 · 45 %</span>. La tranche à 5,5 % a été supprimée en 2015, ramenant à 5 tranches aujourd'hui.`,
+  flag:`Nuance : si l'on ne compte que les taux <i>positifs</i> (hors 0 %), on pourrait répondre 5. L'usage retient la tranche à 0 %, d'où <b>6</b> — contraste pédagogique avec les 5 tranches actuelles.`},
+ {t:`Madame B. — veuve, un enfant à charge handicapé. Nombre de parts ?`, r:`3 parts`,
+  e:`Une veuve avec enfant(s) à charge conserve le <b>quotient conjugal</b> : 2 parts + 0,5 (1er enfant) = 2,5 ; l'enfant titulaire de la carte d'invalidité ajoute <span class="calc">+0,5</span> → <b>3 parts</b>. (2,5 = sans la demi-part handicap.)`},
+ {t:`Monsieur C. — union libre ; 2 enfants à charge exclusive + 1er enfant (précédent mariage) en garde alternée. Parts ?`, r:`2,75 parts`,
+  e:`1 part (union libre = célibataire). L'enfant en garde alternée, compté au 1er rang, ouvre <span class="calc">0,25</span> ; les 2 enfants à charge exclusive, aux rangs 2 et 3, ouvrent <span class="calc">0,5 + 1,0</span>. Total = <span class="calc">1 + 0,25 + 0,5 + 1,0 = 2,75</span>.`},
+ {t:`Madame D. — divorcée, 3 100 €/mois, pension de 230 €/mois versée à l'ex (garde des 2 enfants). Impôt ?`, r:`2 319 € (barème 2025)`,
+  e:`Elle est seule (1 part, enfants chez l'ex). RNI = <span class="calc">3 100 × 12 − 10 % = 33 480 €</span>, moins la pension déductible <span class="calc">230 × 12 = 2 760 €</span> → <span class="calc">30 720 €</span>. QF 30 720 € → tranche 30 % → impôt = <span class="calc">30 720 × 30 % − 6 896,01 = 2 319 €</span>. Pas de décote.`,
+  flag:`Aucune des options proposées (2 584 / 2 381 / 3 618 €) ne correspond au barème 2025 → elles sont vraisemblablement calées sur un <b>barème antérieur</b>. À recalculer ou à signaler.`},
+ {t:`M. et Mme E. — mariés, 2 enfants (6 et 4 ans), 4 150 € + 2 100 € nets/mois. Impôt du foyer ?`, r:`3 597 € (barème 2025)`,
+  e:`3 parts. RNI = <span class="calc">44 820 + 22 680 = 67 500 €</span> ; QF = 22 500 € → 11 % ; impôt = <span class="calc">67 500 × 11 % − 3 × 1 276 = 3 597 €</span>. Pas de décote (3 597 > 3 277), pas de plafonnement (avantage QF 2 861 € < 3 614 €).`,
+  flag:`L'option la plus proche est <b>3 630 €</b> (écart ≈ 33 €, dû au barème). Les autres : 4 521 € ≈ oubli de l'abattement 10 %.`},
+ {t:`Madame F. — 1 350 €/mois. Décote ?`, r:`Oui — décote ≈ 749 €, impôt 0 €`,
+  e:`1 part. RNI = <span class="calc">1 350 × 12 − 10 % = 14 580 €</span> ; impôt brut = <span class="calc">(14 580 − 11 600) × 11 % = 328 €</span>. Décote = <span class="calc">897 − 45,25 % × 328 = 749 €</span>, plafonnée au montant de l'impôt → <b>impôt = 0 €</b>.`,
+  flag:`La bonne idée à valider est « <b>Oui, elle bénéficie d'une décote</b> ». La valeur exacte (≈ 749 €) diffère des montants proposés ; l'option visée est sans doute « Oui, 710 € » (barème antérieur).`},
+ {t:`M. et Mme G. — nouveaux mariés, 1 950 € + 3 610 € nets/mois. Impact du mariage ?`, r:`Leur impôt diminue`,
+  e:`Avant mariage : Monsieur <span class="calc">614 €</span> + Madame <span class="calc">4 800 €</span> = 5 414 €. Après mariage (couple, 2 parts) : <span class="calc">4 222 €</span>. Le mariage fait <b>baisser l'impôt de 1 192 €</b> : les revenus étant disparates, le quotient conjugal abaisse la TMI du conjoint le mieux rémunéré.`},
+];
+
+const root=document.getElementById('corr');
+Q.forEach((q,i)=>{
+  root.insertAdjacentHTML('beforeend',
+   `<div class="qc"><div class="head"><span class="num">${i+1}</span><p class="txt">${q.t}</p></div>
+    <div class="rep"><span class="ic">✓</span>${q.r}</div>
+    <p class="exp">${q.e}</p>${q.flag?`<div class="flag"><b>⚠️ À vérifier :</b> ${q.flag}</div>`:''}</div>`);
+});
+
+/* ---- 2 cas comparatifs ---- */
+const cas=document.getElementById('cas');
+cas.insertAdjacentHTML('beforeend',`
+ <div class="casbox">
+   <div class="ch"><span>Cas A — sans enfant, sans déduction (2 parts)</span><span class="imp">Impôt : 3 328 €</span></div>
+   <div class="cb">
+     <table>
+       <tr><td>Revenu net imposable</td><td>53 460 €</td></tr>
+       <tr><td>Quotient familial (÷ 2)</td><td>26 730 € → 11 %</td></tr>
+       <tr><td>Impôt : 53 460 × 11 % − 2 × 1 276</td><td>3 328 €</td></tr>
+       <tr><td>Décote (IB 3 328 € &gt; seuil couple 3 277 €)</td><td>aucune</td></tr>
+       <tr><td>Plafonnement du QF</td><td>sans objet</td></tr>
+     </table>
+     <p style="margin:6px 0 0">Le couple est <b>juste au-dessus</b> du seuil de décote : il n'en bénéficie pas. Distracteurs : <b>4 027 €</b> (oubli de l'abattement 10 %), <b>2 748 €</b> (décote appliquée à tort).</p>
+   </div>
+ </div>
+ <div class="casbox">
+   <div class="ch"><span>Cas B — 2 enfants (3 parts) + 3 000 € sur un PER</span><span class="imp">Impôt : 1 018 €</span></div>
+   <div class="cb">
+     <table>
+       <tr><td>Revenu net imposable − PER 3 000 €</td><td>50 460 €</td></tr>
+       <tr><td>Quotient familial (÷ 3)</td><td>16 820 € → 11 %</td></tr>
+       <tr><td>Impôt brut : 50 460 × 11 % − 3 × 1 276</td><td>1 722 €</td></tr>
+       <tr><td>Décote : 1 483 − 45,25 % × 1 722</td><td>− 704 €</td></tr>
+       <tr><td><b>Impôt net</b></td><td><b>1 018 €</b></td></tr>
+       <tr><td>Plafonnement : avantage QF 1 276 € &lt; plafond 3 614 €</td><td>ne s'applique pas</td></tr>
+     </table>
+     <p style="margin:6px 0 0">Distracteurs : <b>1 498 €</b> (sans la déduction PER), <b>1 722 €</b> (sans la décote).</p>
+   </div>
+ </div>
+ <div class="ecart">
+   <div class="big">Écart A − B = 2 310 €</div>
+   À salaires identiques, l'impôt passe de 3 328 € à 1 018 €. Trois leviers se cumulent : <b>+1 part</b> (les 2 enfants), <b>−3 000 €</b> de revenu imposable (déduction PER), et le <b>déclenchement de la décote</b> (l'impôt brut passant sous le seuil). Le <b>plafonnement</b> du quotient familial, lui, ne joue dans aucun des deux cas : il ne mordrait qu'à revenus élevés avec plusieurs enfants (l'avantage du QF dépasserait alors 1 807 € par demi-part).
+ </div>
+`);
+</script>
+</body>
+</html>
